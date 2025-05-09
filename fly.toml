@@ -3,20 +3,18 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'visabot-spring-surf-7310'
-primary_region = 'bom'
+app = "visabot-spring-surf-7310"
+primary_region = "bom"
 
 [build]
 
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+# Remove [http_service] block to prevent Fly from expecting a listening port
+# Your bot doesn't need to accept HTTP requests
+
+[env]
+  PYTHONUNBUFFERED = "1"
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
+  memory = "1gb"
+  cpu_kind = "shared"
   cpus = 1
